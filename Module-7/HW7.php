@@ -51,11 +51,10 @@ searchFile($searchRoot, $searchName, $searchResult);
 if (empty($searchResult)) {
     echo 'Совпадений не найдено';
 } else {
-    foreach ($searchResult as $item) {
-      if(filesize($item) >0) {
-          $searchResult = array_filter($searchResult);
-          echo $item . PHP_EOL;
+    foreach ($searchResult = array_filter($searchResult, function ($value) {
+        return !(filesize($value) == 0); }) as $item)
+      {
+        echo $item . PHP_EOL;
       }
-    }
 }
 
