@@ -1,5 +1,6 @@
 @extends('templates.base')
 
+
 @section('meta-title', $data['title'] . ' - ' . config('app.name'))
 
 @section('content')

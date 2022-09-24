@@ -3,14 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Mail\LinkNotice;
+use App\Models\FileStoragem;
+use App\Models\Storage;
+use App\Models\TelegraphText;
+use App\Models\UserSite;
 use App\Models\Text;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class TextController extends Controller
+
+
 {
+    public function listText()
+    {
+         $FileStoragem = FileStoragem::all();
+         $storage = Storage::all();
+         $TelegraphText = TelegraphText::all();
+         $User_site = UserSite::all();
+         $text = Text::all();
+         return new Response(json_encode($FileStoragem, $storage, $TelegraphText, $User_site, $text));
+    }
+
     public function create()
     {
         return view('main');
